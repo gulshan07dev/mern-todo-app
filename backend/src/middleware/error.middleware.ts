@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from "express";
-import ApiError from "../utils/apiError";
 
 // Define a custom error interface
 interface CustomError extends Error {
@@ -13,9 +12,12 @@ const errorMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  res
-    .status(err.statusCode || 500)
-    .json(new ApiError(err.statusCode || 500, err.message, err.errors));
+  res.status(err.statusCode || 500).json({
+    statusCode: err.statusCode || 500,
+    success: false,
+    message: err.message,
+    errors: err.errors,
+  });
 };
 
 export default errorMiddleware;
