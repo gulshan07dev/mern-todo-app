@@ -8,6 +8,7 @@ class ApiError extends Error {
   errors?: any[];
   data?: DataType | null;
   success: boolean;
+  stack?: string | undefined;
 
   constructor(
     statusCode = 500,
