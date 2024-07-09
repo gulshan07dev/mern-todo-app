@@ -14,7 +14,8 @@ const todoSchema = new Schema<ITodo>(
     },
     content: {
       type: String,
-      minlength: [3, "Todo must be at least 3 characters"],
+      required: [true, "Content is required!"],
+      minlength: [7, "Todo must be at least 7 characters"],
     },
     completed: {
       type: Boolean,

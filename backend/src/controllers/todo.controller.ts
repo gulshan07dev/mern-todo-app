@@ -8,7 +8,7 @@ const addTodo = asyncHandler(async (req, res) => {
   const { content } = req.body;
 
   const todo = new Todo({
-    userId,
+    user: userId,
     content,
   });
 
@@ -21,7 +21,7 @@ const addTodo = asyncHandler(async (req, res) => {
     );
   }
 
-  return res.status(200).json(new ApiResponse(200, "Todo created"));
+  return res.status(200).json(new ApiResponse(200, "Todo created", { todo }));
 });
 
 const updateTodo = asyncHandler(async (req, res) => {
@@ -49,14 +49,16 @@ const updateTodo = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "Todo updated successfully"));
+    .json(
+      new ApiResponse(200, "Todo updated successfully", { todo: updatedTodo })
+    );
 });
 
 const getTodos = asyncHandler(async (req, res) => {
   const userId = req.userId;
   const { completed } = req.query;
 
-  const filter: { userId?: string; completed?: boolean } = { userId };
+  const filter: { user?: string; completed?: boolean } = { user: userId };
 
   if (completed !== undefined) {
     filter.completed = completed === "true";
@@ -70,7 +72,7 @@ const getTodos = asyncHandler(async (req, res) => {
       new ApiResponse(
         200,
         `${completed === undefined ? "Todos" : completed === "true" ? "Completed todos" : "Pending todos"} fetch successfully`,
-        todos
+        { todos }
       )
     );
 });
@@ -79,7 +81,7 @@ const toggleTodoCompletion = asyncHandler(async (req, res) => {
   const { todoId } = req.params;
   const userId = req.userId;
 
-  const todo = await Todo.findOne({ _id: todoId, userId });
+  const todo = await Todo.findOne({ _id: todoId, user: userId });
   if (!todo) {
     throw new ApiError(404, "Todo does not exist!");
   }
@@ -109,7 +111,7 @@ const deleteTodo = asyncHandler(async (req, res) => {
   }
 
   const deletedTodo = await Todo.deleteOne({ _id: todoId });
-  if (!deletedTodo) {
+  if (!deletedTodo.deletedCount) {
     throw new ApiError(500, "Something went wrong while deleting the todo!");
   }
 

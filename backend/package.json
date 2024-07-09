@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --env-file=.env dist/server.js",
-    "build": "tsc",
-    "dev": "npm run build && npm run start"
+    "build": "tsc -b",
+    "start": "node --env-file=.env dist/server.js",
+    "dev": "tsx watch --env-file=.env src/server.ts"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +30,7 @@
     "@types/mongoose": "^5.11.97",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.2",
+    "tsx": "^4.16.2",
     "typescript": "^5.5.3"
   }
 }
