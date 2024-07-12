@@ -2,12 +2,12 @@ import { FormEvent, useState } from "react";
 import { ArrowRight, MessageSquareWarningIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import Logo from "./Logo";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Label } from "./ui/label";
+import Logo from "../Logo";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
 import { Link } from "react-router-dom";
 
 export interface IAuthInputs {
@@ -45,7 +45,7 @@ export default function AuthForm({
       <Card className="md:w-[60%] w-full text-center md:border-0 px-8 py-4 md:px-7 md:py-8 rounded-l-full max-md:rounded-sm">
         <CardHeader className="flex flex-col gap-1">
           <div className="flex gap-2.5 items-center max-md:justify-center">
-            <Logo className="gap-1 text-sm text-muted-foreground hover:text-black" />
+            <Logo className="gap-1 text-sm text-muted-foreground hover:text-black dark:hover:text-white" />
             <ArrowRight className="text-xs text-muted-foreground" size={20} />
             <CardTitle className="text-2xl font-lato">
               {type === "signup" ? "Signup" : "Login"}
@@ -131,7 +131,7 @@ export default function AuthForm({
           </div>
           <Button
             type="submit"
-            className="w-full mt-3 bg-[#f78f39] hover:bg-[#ff7300] py-5 rounded-full"
+            className="w-full mt-3 bg-[#e77111] hover:bg-[#ff7300] text-white py-5 rounded-full"
             disabled={isLoading}
           >
             {isLoading && (
