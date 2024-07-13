@@ -6,11 +6,11 @@ import Sidebar from "./Sidebar";
 
 const DashboardLayout: FC = () => {
   return (
-    <div className="flex-grow">
+    <div className="w-full flex flex-col flex-grow">
       <Navbar />
-      <div className="flex w-full min-h-full">
+      <div className="flex flex-grow">
         <Sidebar />
-        <main className="flex-grow pb-16">
+        <main className="flex-grow min-h-full pb-20 md:pb-5">
           <Outlet />
         </main>
       </div>
