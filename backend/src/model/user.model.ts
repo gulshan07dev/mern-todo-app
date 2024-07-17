@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 interface IUser extends Document {
   name: string;
   email: string;
-  password: string;
+  password?: string;
   isPasswordCorrect(password: string): Promise<boolean>;
   generateAccessToken(): string;
 }
