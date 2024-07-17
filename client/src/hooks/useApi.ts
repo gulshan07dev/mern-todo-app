@@ -9,7 +9,7 @@ interface ErrorResponse {
 }
 
 interface ResponseData<T> {
-  data: T;
+  data: T | any;
   message: string;
   statusCode: number;
   success: boolean;
