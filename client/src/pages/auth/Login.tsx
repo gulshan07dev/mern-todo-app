@@ -5,9 +5,11 @@ import AuthForm, { IAuthInputs } from "@/components/auth/AuthForm";
 import { toast } from "sonner";
 import useApi from "@/hooks/useApi";
 import { userApi } from "@/http";
+import useAuthStore from "@/app/authStore";
 
 export default function Component() {
   const navigate = useNavigate();
+  const { login } = useAuthStore();
   const { isLoading, error, handler } = useApi(userApi.login);
 
   async function handleSubmit({ email, password }: IAuthInputs) {
@@ -15,6 +17,7 @@ export default function Component() {
     const { responseData, success, error } = await handler({ email, password });
     if (success && !isLoading) {
       toast(responseData?.message);
+      login(responseData?.data?.user);
       navigate("/");
     } else {
       toast(error?.message);

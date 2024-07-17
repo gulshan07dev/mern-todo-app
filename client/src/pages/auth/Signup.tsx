@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 
-import PageLayout from "../layouts/PageLayout";
+import PageLayout from "@/layouts/PageLayout";
 import AuthForm, { IAuthInputs } from "@/components/auth/AuthForm";
 import { useToast } from "@/components/ui/use-toast";
 import useApi from "@/hooks/useApi";
 import { userApi } from "@/http";
+import useAuthStore from "@/app/authStore";
 
 export default function Signup() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const {login} = useAuthStore();
   const { isLoading, error, handler } = useApi(userApi.signup);
 
   async function handleSubmit({ name, email, password }: IAuthInputs) {
@@ -17,6 +19,7 @@ export default function Signup() {
     setTimeout(() => {
       if (success && !isLoading) {
         toast({ title: responseData?.message });
+        login(responseData?.data?.user)
         navigate("/");
       } else {
         toast({ title: error?.message, variant: "destructive" });
