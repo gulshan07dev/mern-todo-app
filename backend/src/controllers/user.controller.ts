@@ -20,7 +20,8 @@ const signup = asyncHandler(async (req, res) => {
     email,
     password,
   });
-  const savedUser = await user.save();
+  const savedUser = await user.save();  
+  savedUser.password = undefined;
 
   if (!savedUser) {
     throw new ApiError(500, "Something went wrong, try again");
@@ -32,13 +33,18 @@ const signup = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "User signup successfully", { accessToken }));
+    .json(
+      new ApiResponse(200, "User signup successfully", {
+        user: savedUser,
+        accessToken,
+      })
+    );
 });
 
 const login = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("-password");
 
   // Generate Access token
   const accessToken = user?.generateAccessToken();
@@ -48,7 +54,9 @@ const login = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "User logged in successfully", { accessToken }));
+    .json(
+      new ApiResponse(200, "User logged in successfully", { user, accessToken })
+    );
 });
 
 const logout = asyncHandler(async (req, res) => {
