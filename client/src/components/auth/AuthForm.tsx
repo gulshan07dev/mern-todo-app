@@ -133,7 +133,7 @@ export default function AuthForm({
           </div>
           <Button
             type="submit"
-            className="w-full mt-3 bg-[#e77111] hover:bg-[#ff7300] text-white py-5 rounded-full"
+            className="w-full mt-3 py-5 rounded-full"
             disabled={isLoading}
           >
             {isLoading && (
