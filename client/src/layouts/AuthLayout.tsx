@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import useAuthStore from "@/app/authStore";
 import {
@@ -17,6 +17,7 @@ export default function AuthLayout({
   authRequired?: boolean;
 }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLoggedIn } = useAuthStore();
 
   if (!isLoggedIn && authRequired) {
@@ -35,8 +36,22 @@ export default function AuthLayout({
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex-row justify-between sm:justify-between">
-            <Button variant={"secondary"}>Signup</Button>
-            <Button className="bg-[#e77111] hover:bg-[#ff7300]">Login</Button>
+            <Button
+              variant={"secondary"}
+              onClick={() =>
+                navigate("/signup", { state: { redirect: location.pathname } })
+              }
+            >
+              Signup
+            </Button>
+            <Button
+              className="bg-[#e77111] hover:bg-[#ff7300]"
+              onClick={() =>
+                navigate("/login", { state: { redirect: location.pathname } })
+              }
+            >
+              Login
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

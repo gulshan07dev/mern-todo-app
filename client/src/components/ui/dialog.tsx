@@ -70,7 +70,7 @@ const DialogFooter = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col-reverse border-t border-border pt-3.5 mt-2 px-6 sm:flex-row sm:justify-end sm:space-x-2",
+      "flex px-6 justify-between",
       className
     )}
     {...props}
@@ -99,7 +99,10 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm font-poppins px-6 text-muted-foreground", className)}
+    className={cn(
+      "text-sm font-poppins border-b border-border pb-4 px-6 text-muted-foreground",
+      className
+    )}
     {...props}
   />
 ));

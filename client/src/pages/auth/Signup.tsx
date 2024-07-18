@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import PageLayout from "@/layouts/PageLayout";
 import AuthForm, { IAuthInputs } from "@/components/auth/AuthForm";
@@ -9,8 +9,10 @@ import useAuthStore from "@/app/authStore";
 
 export default function Signup() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { redirect } = location.state;
   const { toast } = useToast();
-  const {login} = useAuthStore();
+  const { login } = useAuthStore();
   const { isLoading, error, handler } = useApi(userApi.signup);
 
   async function handleSubmit({ name, email, password }: IAuthInputs) {
@@ -19,8 +21,8 @@ export default function Signup() {
     setTimeout(() => {
       if (success && !isLoading) {
         toast({ title: responseData?.message });
-        login(responseData?.data?.user)
-        navigate("/");
+        login(responseData?.data?.user);
+        navigate(redirect || "/");
       } else {
         toast({ title: error?.message, variant: "destructive" });
       }
