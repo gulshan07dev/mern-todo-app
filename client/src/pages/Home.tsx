@@ -25,7 +25,7 @@ const Home = () => {
       {!isLoggedIn && (
         <Card className="pr-5">
           <span className="font-rubik">
-            <Link to={"/login"}>
+            <Link to={"/login"} state={{ redirect: "/todos" }}>
               <Button className="bg-orange-500 rounded-none font-roboto">
                 Login
               </Button>
@@ -33,6 +33,7 @@ const Home = () => {
             or{" "}
             <Link
               to={"/signup"}
+              state={{ redirect: "/todos" }}
               className="text-zinc-900 font-lato font-semibold"
             >
               Signup
