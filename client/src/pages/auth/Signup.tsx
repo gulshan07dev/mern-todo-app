@@ -10,7 +10,7 @@ import useAuthStore from "@/app/authStore";
 export default function Signup() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { redirect } = location.state;
+  const redirect = location?.state?.redirect || "/";
   const { toast } = useToast();
   const { login } = useAuthStore();
   const { isLoading, error, handler } = useApi(userApi.signup);
@@ -22,7 +22,7 @@ export default function Signup() {
       if (success && !isLoading) {
         toast({ title: responseData?.message });
         login(responseData?.data?.user);
-        navigate(redirect || "/");
+        navigate(redirect);
       } else {
         toast({ title: error?.message, variant: "destructive" });
       }

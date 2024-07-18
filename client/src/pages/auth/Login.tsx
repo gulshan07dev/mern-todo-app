@@ -10,7 +10,7 @@ import useAuthStore from "@/app/authStore";
 export default function Component() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { redirect } = location.state;
+  const  redirect  = location?.state?.redirect || "/";
   const { login } = useAuthStore();
   const { isLoading, error, handler } = useApi(userApi.login);
 
@@ -20,7 +20,7 @@ export default function Component() {
     if (success && !isLoading) {
       toast(responseData?.message);
       login(responseData?.data?.user);
-      navigate(redirect || "/");
+      navigate(redirect);
     } else {
       toast(error?.message);
     }

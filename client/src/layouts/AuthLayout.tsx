@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import useAuthStore from "@/app/authStore";
 import {
@@ -21,7 +21,9 @@ export default function AuthLayout({
   const location = useLocation();
   const { isLoggedIn } = useAuthStore();
 
-  if (!isLoggedIn && authRequired) {
+  if (isLoggedIn && !authRequired) {
+    return <Navigate to={"/"} />;
+  } else if (!isLoggedIn && authRequired) {
     return (
       <AlertDialog open>
         <AlertDialogContent>
@@ -47,7 +49,7 @@ export default function AuthLayout({
         </AlertDialogContent>
       </AlertDialog>
     );
+  } else {
+    return <Outlet />;
   }
-
-  return <Outlet />;
 }
