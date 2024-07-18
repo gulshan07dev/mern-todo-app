@@ -29,7 +29,8 @@ export default function AuthForm({
   errorMessage,
   isLoading,
 }: IAuthFormProps) {
-  const location = useLocation()
+  const location = useLocation();
+  const redirect = location?.state?.redirect || "/";
   const [authInputs, setAuthInputs] = useState<IAuthInputs>({
     name: "",
     email: "",
@@ -60,7 +61,7 @@ export default function AuthForm({
           <div className="text-sm md:text-base">or</div>
           <Link
             to={type === "signup" ? "/login" : "/signup"}
-            state={{redirect: location.state.redirect}}
+            state={{ redirect }}
             className="underline text-primary"
           >
             {type === "signup" ? "Login" : "Signup"}
