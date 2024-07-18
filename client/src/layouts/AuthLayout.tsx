@@ -2,14 +2,15 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import useAuthStore from "@/app/authStore";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 export default function AuthLayout({
   authRequired = true,
@@ -22,39 +23,29 @@ export default function AuthLayout({
 
   if (!isLoggedIn && authRequired) {
     return (
-      <Dialog open>
-        <DialogContent
-          onClose={() => {
-            navigate("/");
-          }}
-        >
-          <DialogHeader>
-            <DialogTitle>Are you authenticated?</DialogTitle>
-            <DialogDescription>
+      <AlertDialog open>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you authenticated?</AlertDialogTitle>
+            <AlertDialogDescription>
               You cannot access this page without authenticated. Please login or
               signup to access this page.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter className="flex-row justify-between sm:justify-between">
-            <Button
-              variant={"secondary"}
-              onClick={() =>
-                navigate("/signup", { state: { redirect: location.pathname } })
-              }
-            >
-              Signup
-            </Button>
-            <Button
-              className="bg-[#e77111] hover:bg-[#ff7300]"
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => navigate("/")}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
               onClick={() =>
                 navigate("/login", { state: { redirect: location.pathname } })
               }
             >
-              Login
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     );
   }
 
