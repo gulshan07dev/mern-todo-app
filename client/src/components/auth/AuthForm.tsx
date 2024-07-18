@@ -8,7 +8,7 @@ import Logo from "../Logo";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export interface IAuthInputs {
   name: string;
@@ -29,6 +29,7 @@ export default function AuthForm({
   errorMessage,
   isLoading,
 }: IAuthFormProps) {
+  const location = useLocation()
   const [authInputs, setAuthInputs] = useState<IAuthInputs>({
     name: "",
     email: "",
@@ -59,6 +60,7 @@ export default function AuthForm({
           <div className="text-sm md:text-base">or</div>
           <Link
             to={type === "signup" ? "/login" : "/signup"}
+            state={{redirect: location.state.redirect}}
             className="underline text-primary"
           >
             {type === "signup" ? "Login" : "Signup"}
