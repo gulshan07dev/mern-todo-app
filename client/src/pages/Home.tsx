@@ -13,11 +13,17 @@ const Home = () => {
         <span>
           <TimerIcon size={100} className="text-muted-foreground" />
         </span>
-        <h1 className="text-3xl bg-gradient-to-r from-[#ff00cc] to-[#3333ff] bg-clip-text text-transparent text-center">
-          🎉WELCOME, {user?.name} TO MY Todo App
+        <h1 className="text-3xl bg-gradient-to-r from-primary to-secondary-foreground bg-clip-text text-transparent text-center">
+          🎉WELCOME, {user?.name} TO{" "}
+          <span className="font-noto_sans font-semibold">MERN Todo App</span>
         </h1>
         <p className="text-2xl text-[#000000c9]">
-          Created By <span className="font-medium">Gulshan</span>{" "}
+          Created By{" "}
+          <span className="font-lato italic font-medium hover:text-primary">
+            <a href="https://www.linkedin.com/in/gulshan07dev" target="_blank">
+              Gulshan
+            </a>
+          </span>{" "}
           <span className="text-[#ff0000]">❤</span>
         </p>
       </div>
