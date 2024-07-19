@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 import PageLayout from "@/layouts/PageLayout";
 import AuthForm, { IAuthInputs } from "@/components/auth/AuthForm";
-import { toast } from "sonner";
 import useApi from "@/hooks/useApi";
 import { userApi } from "@/http";
 import useAuthStore from "@/app/authStore";
@@ -10,19 +10,26 @@ import useAuthStore from "@/app/authStore";
 export default function Component() {
   const navigate = useNavigate();
   const location = useLocation();
-  const  redirect  = location?.state?.redirect || "/";
+  const redirect = location?.state?.redirect || "/";
   const { login } = useAuthStore();
   const { isLoading, error, handler } = useApi(userApi.login);
 
   async function handleSubmit({ email, password }: IAuthInputs) {
-    toast("Log in your account...");
+    const loadingToastId = toast.loading("Log in your account");
+
     const { responseData, success, error } = await handler({ email, password });
+
     if (success && !isLoading) {
-      toast(responseData?.message);
+      toast.success(responseData?.message, { id: loadingToastId });
       login(responseData?.data?.user);
-      navigate(redirect);
+      setTimeout(() => {
+        navigate(redirect);
+      }, 100);
     } else {
-      toast(error?.message);
+      toast.error("Login failed", {
+        description: error?.message,
+        id: loadingToastId,
+      });
     }
   }
   return (
