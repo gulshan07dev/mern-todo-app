@@ -6,6 +6,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import Home from "@/pages/Home";
+import UserProfile from "@/pages/auth/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,15 @@ const router = createBrowserRouter([
             path: "",
             element: <Home />,
           },
+          { 
+            element: <AuthLayout authRequired />,
+            children: [
+              {
+                path: "/me",
+                element: <UserProfile />
+              }
+            ]
+          }
         ],
       },
     ],

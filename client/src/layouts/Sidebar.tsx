@@ -22,12 +22,12 @@ export default function Sidebar() {
     },
     {
       label: "Profile",
-      slug: "/user/me",
+      slug: "/me",
       icon: <UserIcon className="h-5 w-5" />,
     },
   ];
   return (
-    <aside className="fixed max-md:bottom-0 max-md:left-0 max-md:right-0 md:sticky md:top-16 h-14 border-t border-border md:h-[calc(100vh-64px)] md:border-r bg-background md:w-60">
+    <aside className="fixed max-md:bottom-0 max-md:left-0 max-md:right-0 md:sticky md:top-16 h-14 md:border-r max-md:border-t border-border md:h-[calc(100vh-64px)] bg-background md:w-60">
       <nav className="flex flex-1 md:flex-col items-center max-md:justify-between md:items-start gap-2 overflow-auto px-4 py-2 md:px-3 md:py-4 sm:px-6">
         {navLinks.map(({ label, slug, icon }) => (
           <NavLink
