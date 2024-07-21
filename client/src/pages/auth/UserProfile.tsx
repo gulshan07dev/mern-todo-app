@@ -17,12 +17,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import UpdateUserProfileDialog from "@/components/auth/UpdateUserProfileDialog";
+import ChangePasswordDialog from "@/components/auth/ChangePasswordDialog";
 
 function Profile() {
   const { user } = useAuthStore();
-  const [dialogOpen, setDialogOpen] = useState<"UPDATE_USER_PROFILE" | null>(
-    null
-  );
+  const [dialogOpen, setDialogOpen] = useState<
+    "UPDATE_USER_PROFILE" | "UPDATE_PASSWORD" | null
+  >(null);
 
   const handleCloseDialog = () => {
     setDialogOpen(null);
@@ -44,7 +45,9 @@ function Profile() {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Profile</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Change password</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setDialogOpen("UPDATE_PASSWORD")}>
+              Change password
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <LogoutButton />
           </DropdownMenuContent>
@@ -52,6 +55,10 @@ function Profile() {
 
         <UpdateUserProfileDialog
           isOpen={dialogOpen === "UPDATE_USER_PROFILE"}
+          handleClose={handleCloseDialog}
+        />
+        <ChangePasswordDialog
+          isOpen={dialogOpen === "UPDATE_PASSWORD"}
           handleClose={handleCloseDialog}
         />
       </div>

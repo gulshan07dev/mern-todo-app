@@ -5,12 +5,13 @@ import {
   signupDataValidate,
 } from "../middleware/auth.middleware";
 import {
-  deleteUserProfile,
-  getUserProfile,
+  signup,
   login,
   logout,
-  signup,
+  getUserProfile,
   updateUserProfile,
+  changePassword,
+  deleteUserProfile,
 } from "../controllers/user.controller";
 
 const router = Router();
@@ -21,7 +22,8 @@ router.route("/logout").get(jwtAuth, logout);
 router
   .route("/")
   .get(jwtAuth, getUserProfile)
-  .put(jwtAuth, updateUserProfile)
+  .patch(jwtAuth, updateUserProfile)
   .delete(jwtAuth, deleteUserProfile);
+router.route("/change-password").patch(jwtAuth, changePassword);
 
 export default router;

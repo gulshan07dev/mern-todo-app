@@ -20,7 +20,7 @@ const signup = asyncHandler(async (req, res) => {
     email,
     password,
   });
-  const savedUser = await user.save();  
+  const savedUser = await user.save();
   savedUser.password = undefined;
 
   if (!savedUser) {
@@ -31,14 +31,12 @@ const signup = asyncHandler(async (req, res) => {
   const accessToken = user.generateAccessToken();
   res.cookie("accessToken", accessToken, cookieOptions);
 
-  return res
-    .status(200)
-    .json(
-      new ApiResponse(200, "User signup successfully", {
-        user: savedUser,
-        accessToken,
-      })
-    );
+  return res.status(200).json(
+    new ApiResponse(200, "User signup successfully", {
+      user: savedUser,
+      accessToken,
+    })
+  );
 });
 
 const login = asyncHandler(async (req, res) => {
@@ -104,6 +102,28 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "Profile updated successfully"));
 });
 
+const changePassword = asyncHandler(async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  const userId = req.userId;
+
+  if (!oldPassword || !newPassword) {
+    throw new ApiError(400, "All fields are required !");
+  }
+
+  const user = await User.findById(userId);
+  const isPasswordCorrect = await user?.isPasswordCorrect(oldPassword);
+  if (!isPasswordCorrect) {
+    throw new ApiError(400, "Invalid oldPassword !");
+  }
+
+  user!.password = newPassword;
+  await user?.save();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "Password changed successfully"));
+});
+
 const deleteUserProfile = asyncHandler(async (req, res, next) => {
   const userId = req.userId;
 
@@ -147,5 +167,6 @@ export {
   logout,
   getUserProfile,
   updateUserProfile,
+  changePassword,
   deleteUserProfile,
 };

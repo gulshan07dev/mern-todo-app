@@ -18,7 +18,11 @@ export class UserApi {
   }
 
   async updateUserProfile(data: { name: string }) {
-    return await axiosInstance.put("/users", data);
+    return await axiosInstance.patch("/users", data);
+  }
+
+  async changePassword(data: { oldPassword: string, newPassword: string }) {
+    return await axiosInstance.patch("/users/change-password", data);
   }
 }
 
