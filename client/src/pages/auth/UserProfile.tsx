@@ -37,7 +37,11 @@ function Profile() {
         </h1>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-full">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full text-secondary-foreground"
+            >
               <MoreHorizontal />
               <span className="sr-only">Toggle user menu</span>
             </Button>

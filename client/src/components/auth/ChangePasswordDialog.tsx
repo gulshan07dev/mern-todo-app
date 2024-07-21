@@ -44,8 +44,8 @@ export default function ChangePasswordDialog({
         <DialogHeader>
           <DialogTitle>Change password</DialogTitle>
         </DialogHeader>
-        <div className="w-full flex flex-col gap-3 px-6">
-          <div className="w-full flex flex-col gap-2">
+        <div className="w-full flex flex-col gap-5 px-6">
+          <div className="w-full flex flex-col gap-3">
             <Label htmlFor="oldPassword">Old Password</Label>
             <Input
               id="oldPassword"

@@ -17,7 +17,7 @@ const Home = () => {
           🎉WELCOME, {user?.name} TO{" "}
           <span className="font-noto_sans font-semibold">MERN Todo App</span>
         </h1>
-        <p className="text-2xl text-[#000000c9]">
+        <p className="text-2xl text-[#000000c9] dark:text-slate-100">
           Created By{" "}
           <span className="font-lato italic font-medium hover:text-primary">
             <a href="https://www.linkedin.com/in/gulshan07dev" target="_blank">
