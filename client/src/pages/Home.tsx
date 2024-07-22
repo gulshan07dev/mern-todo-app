@@ -40,7 +40,7 @@ const Home = () => {
             <Link
               to={"/signup"}
               state={{ redirect: "/todos" }}
-              className="text-zinc-900 font-lato font-semibold"
+              className="text-accent-foreground font-lato font-semibold"
             >
               Signup
             </Link>{" "}

@@ -36,8 +36,8 @@ export default function Sidebar() {
             className={cn(
               "flex md:w-full items-center gap-1 md:gap-3 rounded-md px-3 py-2 text-muted-foreground transition-colors font-lato",
               slug === location.pathname
-                ? "bg-accent text-accent-foreground"
-                : "hover:bg-accent hover:bg-opacity-70 hover:text-accent-foreground"
+                ? "bg-accent text-secondary-foreground"
+                : "hover:bg-accent hover:bg-opacity-70 hover:text-secondary-foreground"
             )}
           >
             {icon}

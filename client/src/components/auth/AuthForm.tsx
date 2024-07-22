@@ -75,7 +75,7 @@ export default function AuthForm({
         )}
       >
         {errorMessage && (
-          <Alert className="mb-4">
+          <Alert className="mb-4" variant={"destructive"}>
             <MessageSquareWarningIcon className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
             <AlertDescription>{errorMessage}</AlertDescription>

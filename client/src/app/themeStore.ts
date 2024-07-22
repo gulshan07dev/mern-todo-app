@@ -10,7 +10,7 @@ const useThemeStore = create<ThemeState>()(
   devtools(
     persist(
       (set) => ({
-        theme: "dark",
+        theme: "light",
         setTheme: (theme) =>
           set(() => ({
             theme: theme,

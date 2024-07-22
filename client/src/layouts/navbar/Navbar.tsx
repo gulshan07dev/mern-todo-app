@@ -26,8 +26,8 @@ export default function Navbar() {
     <header className="sticky top-0 flex h-16 bg-background items-center justify-between border-b border-border px-4 sm:px-6">
       <Logo />
       <div className="flex items-center gap-4">
-        <Button
-          variant="ghost"
+        <Button 
+        variant={"ghost"}
           size="icon"
           className="text-secondary-foreground"
         >
@@ -36,9 +36,9 @@ export default function Navbar() {
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button size="icon" className="rounded-full overflow-hidden">
+            <Button size="icon" variant={"ghost"} className="rounded-full overflow-hidden border-[1.5px] border-border">
               {isLoggedIn ? (
-                <span className="bg-secondary size-full flex justify-center items-center text-primary text-lg font-roboto">
+                <span className="size-full flex bg-transparent justify-center items-center text-primary text-[20px] font-roboto">
                   {user?.name?.split("")[0]}
                 </span>
               ) : (
@@ -58,7 +58,7 @@ export default function Navbar() {
               <DropdownMenuSubTrigger>
                 <span>
                   {theme.charAt(0).toUpperCase() +
-                    theme.slice(1, -1).toLowerCase()}{" "}
+                    theme.slice(1, theme.length).toLowerCase()}{" "}
                   mode
                 </span>
               </DropdownMenuSubTrigger>

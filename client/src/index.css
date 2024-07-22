@@ -11,7 +11,7 @@
 body {
   width: 100vw;
   overflow-x: hidden;
-
+  color: hsl(208, 18%, 19%);
 }
 
 @layer base {
@@ -26,9 +26,9 @@ body {
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
+    --muted: 240 40% 97.7%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
+    --accent: 240 40% 95.5%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -44,20 +44,20 @@ body {
   }
 
   .dark {
-    --background: 225 28% 7%;
+    --background: 240 40% 5%;
     --foreground: 210 40% 98%;
-    --card: 240 40% 5%;
+    --card: 208 40% 7%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 38% 10%;
+    --popover: 208 30% 12%;
     --popover-foreground: 210 40% 98%;
     --primary: 27 100% 56%;
     --primary-foreground: 225 35% 12%;
     --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 240 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 208 28% 22%;
+    --accent-foreground: 240 40% 92%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
