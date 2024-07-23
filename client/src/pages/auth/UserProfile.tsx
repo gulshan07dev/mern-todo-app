@@ -67,7 +67,7 @@ function Profile() {
         />
       </div>
 
-      <Card className="py-10 px-7 flex flex-col gap-4">
+      <Card className="py-10 px-3 sm:px-7 flex flex-col gap-4">
         <div className="w-full flex flex-col gap-2">
           <Label htmlFor="name">Name</Label>
           <div className="flex justify-between items-center gap-2">
