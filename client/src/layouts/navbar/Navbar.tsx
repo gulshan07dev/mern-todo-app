@@ -23,7 +23,7 @@ export default function Navbar() {
   const { theme, setTheme } = useThemeStore();
   const { isLoggedIn, user } = useAuthStore();
   return (
-    <header className="sticky top-0 flex h-16 bg-background items-center justify-between border-b border-border px-4 sm:px-6">
+    <header className="sticky top-0 flex h-16 bg-background items-center justify-between border-b border-border px-3.5 sm:px-6 max-md:bg-primary-foreground">
       <Logo />
       <div className="flex items-center gap-4">
         <Button 
