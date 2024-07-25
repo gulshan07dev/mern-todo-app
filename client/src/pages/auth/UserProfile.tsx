@@ -32,7 +32,7 @@ function Profile() {
   return (
     <PageLayout className="flex flex-col gap-8">
       <div className="flex justify-between">
-        <h1 className="text-3xl font-lato font-semibold text-primary">
+        <h1 className="text-3xl font-lato font-semibold text-secondary-foreground">
           Profile
         </h1>
         <DropdownMenu>
