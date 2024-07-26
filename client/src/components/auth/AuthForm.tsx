@@ -43,8 +43,8 @@ export default function AuthForm({
   }
 
   return (
-    <Card className="w-full md:max-w-4xl flex flex-col md:flex-row justify-center items-start bg-primary-foreground rounded-full md:rounded-l-full md:rounded-r-none max-md:rounded-none md:border-t-0 md:border-r-0 p-4 md:p-0 max-md:border-0 max-md:shadow-none">
-      <Card className="md:w-[60%] w-full text-center md:border-0 px-8 py-4 md:px-7 md:py-8 rounded-l-full max-md:rounded-sm">
+    <Card className="w-full md:max-w-4xl flex flex-col md:flex-row justify-center items-start bg-transparent rounded-full md:rounded-l-full md:rounded-r-none max-md:rounded-none md:border-t-0 md:border-r-0 p-4 md:p-0 max-md:border-0 max-md:shadow-none">
+      <Card className="md:bg-transparent md:w-[60%] w-full text-center md:border-0 px-8 py-4 md:px-7 md:py-8 rounded-l-full max-md:rounded-sm">
         <CardHeader className="flex flex-col gap-1">
           <div className="flex gap-2.5 items-center max-md:justify-center">
             <Logo className="gap-1 text-sm text-muted-foreground hover:text-black dark:hover:text-white" />
